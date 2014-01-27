@@ -367,7 +367,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="251"/>
         <source>INSTALLED</source>
-        <translation type="unfinished"></translation>
+        <translation>インストール済み</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="596"/>
@@ -382,24 +382,24 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="133"/>
         <source>Please wait while NOOBS initialises</source>
-        <translation type="unfinished"></translation>
+        <translation>NOOBSの初期化が完了するまでお待ちください</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="444"/>
         <source>The install process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translatione>インストールはまもなく開始されます。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="467"/>
         <source>OS(es) installed</source>
         <oldsource>OS installed</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>OSがインストールされました</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="468"/>
         <source>OS(es) Installed Successfully</source>
         <oldsource>OS Installed Successfully</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>OSのインストールに成功しました</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="532"/>
@@ -443,17 +443,17 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1064"/>
         <source>Needed</source>
-        <translation type="unfinished"></translation>
+        <translation>必要な容量</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1065"/>
         <source>Available</source>
-        <translation type="unfinished"></translation>
+        <translation>使用可能な容量</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1173"/>
         <source>Error downloading meta file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">メタファイルのダウンロードエラー</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1183"/>
@@ -463,7 +463,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1298"/>
         <source>Wired network access is required to use NOOBS without local images. Please insert a network cable into the network port.</source>
-        <translation type="unfinished">ローカルイメージ以外でNOOBSを利用するには有線ネットワークが必要です。ネットワークケーブルを接続してください。</translation>
+        <translation>ローカルイメージ以外でNOOBSを利用するには有線ネットワークが必要です。ネットワークケーブルを接続してください。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="717"/>
@@ -487,7 +487,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="69"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translation type="unfinished"></translation>
+        <translation>RIOSOSをインストール出来ません。リカバリーパーティションのサイズが大きすぎます。</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="93"/>
@@ -518,84 +518,84 @@ Would you like to make this setting permanent?</source>
         <location filename="multiimagewritethread.cpp" line="207"/>
         <source>%1: Creating partition entry</source>
         <oldsource>Creating partition entry</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: パーティションエントリーを作成中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="213"/>
         <source>%1: Writing OS image</source>
         <oldsource>Writing image</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: イメージを書き込み中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="227"/>
         <source>%1: Mounting file system</source>
         <oldsource>Mounting file system</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: ファイルシステムをマウント中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="230"/>
         <location filename="multiimagewritethread.cpp" line="254"/>
         <source>%1: Error mounting file system</source>
         <oldsource>Error mounting file system</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: ファイルシステムのマウント中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="220"/>
         <source>%1: Creating filesystem (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1: ファイルシステムを作成中 (%2)</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="235"/>
         <source>%1: Downloading and extracting filesystem</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: ファイルシステムをダウンロード・展開中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="237"/>
         <source>%1: Extracting filesystem</source>
         <oldsource>%1 Extracting filesystem</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: ファイルシステムを展開中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="251"/>
         <source>%1: Mounting FAT partition</source>
         <oldsource>Mouning FAT partition</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: FATパーティションをマウント中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="258"/>
         <source>%1: Creating os_config.json</source>
         <oldsource>Creating os_config.json</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: os_config.json を作成中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="286"/>
         <source>%1: Saving display mode to config.txt</source>
         <oldsource>Saving display mode to config.txt</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: config.txt にディスプレイモードを保存中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="297"/>
         <source>%1: Running partition setup script</source>
         <oldsource>Running partition setup script</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: パーティションのセットアップスクリプトを実行中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="340"/>
         <source>%1: Error executing partition setup script</source>
         <oldsource>Error executing partition setup script</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: パーティションのセットアップスクリプトを実行中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="345"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>Unmounting FAT partition</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>FATパーティションをアンマウント中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="348"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>%1: アンマウント中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="401"/>
@@ -605,12 +605,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="419"/>
         <source>Internal error in partitioning</source>
-        <translation type="unfinished"></translation>
+        <translation>パーティション作成中に内部エラーが発生しました</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="502"/>
         <source>Error creating file system</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルシステム作成中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="544"/>
@@ -621,12 +621,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="568"/>
         <source>Error downloading or extracting tarball</source>
-        <translation type="unfinished"></translation>
+        <translation>tarballのダウンロード中もしくは展開中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="627"/>
         <source>Error downloading or writing OS to SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>SDカードにOSをダウンロード中もしくは書き込み中にエラーが発生しました</translation>
     </message>
 </context>
 <context>
