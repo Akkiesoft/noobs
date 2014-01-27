@@ -249,17 +249,17 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="47"/>
         <source>Disk space</source>
-        <translation type="unfinished"></translation>
+        <translation>ディスクスペース</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="53"/>
         <source>Needed:</source>
-        <translation type="unfinished"></translation>
+        <translation>必要な容量</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="60"/>
         <source>Available:</source>
-        <translation type="unfinished"></translation>
+        <translation>使用可能な容量</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="122"/>
@@ -269,7 +269,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="125"/>
         <source>Installs the selected operating system image onto this SD card.</source>
-        <translation type="unfinished"></translation>
+        <translation>選択されたオペレーティングシステムイメージをSDカードにインストールします。</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="128"/>
@@ -284,7 +284,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="140"/>
         <source>Exits and boots the installed operating system.</source>
-        <translation>終了して、インストールしたオペレーティング システムを起動する</translation>
+        <translation>NOOBSを終了して、インストールしたオペレーティング システムを起動する</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="155"/>
@@ -325,7 +325,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="496"/>
         <source>NOOBS v%1 - Built: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>NOOBS v%1 - Built: %2</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="85"/>
@@ -372,12 +372,12 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="596"/>
         <source>Display Mode Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>表示モード</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="528"/>
         <source>HDMI preferred mode</source>
-        <translation type="unfinished"></translation>
+        <translation>HDMI 通常モード</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="133"/>
@@ -409,12 +409,12 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="536"/>
         <source>composite PAL mode</source>
-        <translation>コンポジット PAL モード</translation>
+        <translation>コンポジット PALモード</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="540"/>
         <source>composite NTSC mode</source>
-        <translation>コンポジット NTSC モード</translation>
+        <translation>コンポジット NTSCモード</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="597"/>
@@ -428,17 +428,17 @@ Would you like to make this setting permanent?</source>
         <location filename="mainwindow.cpp" line="1173"/>
         <location filename="mainwindow.cpp" line="1183"/>
         <source>Download error</source>
-        <translation type="unfinished">ダウンロードエラー</translation>
+        <translation>ダウンロードエラー</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="862"/>
         <source>Error downloading distribution list from Internet</source>
-        <translation>ディストリビューションのリストをダウンロード中にエラーが発生しました。</translation>
+        <translation>ディストリビューションのリストをダウンロード中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="876"/>
         <source>Error parsing list.json downloaded from server</source>
-        <translation>ダウンロード済みのlist.jsonの読み込みに失敗しました。</translation>
+        <translation>サーバーからダウンロードしたlist.jsonの読み込み中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1064"/>
@@ -453,7 +453,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1173"/>
         <source>Error downloading meta file</source>
-        <translation type="unfinished">メタファイルのダウンロードエラー</translation>
+        <translation>メタファイルのダウンロードエラー</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1183"/>
@@ -474,7 +474,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="718"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
-        <translation type="unfinished">この機能には有線ネットワークが必要です。ネットワークケーブルを接続してください。</translation>
+        <translation>この機能には有線ネットワークが必要です。ネットワークケーブルを接続してください。</translation>
     </message>
 </context>
 <context>
@@ -482,7 +482,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="44"/>
         <source>partitions.json invalid</source>
-        <translation type="unfinished">partitions.json が正しくありません。</translation>
+        <translation>不正な partitions.json です</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="69"/>
@@ -492,22 +492,22 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="93"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
-        <translation type="unfinished">ディスクスペースが足りません。 %1 MB必要ですが、 %2 MBしかありません。</translation>
+        <translation>ディスクスペースが足りません。 %1 MB必要ですが、 %2 MBしかありません。</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="97"/>
         <source>Clearing existing EBR</source>
-        <translation type="unfinished"></translation>
+        <translation>既存のEBRをクリア中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="123"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">書き込み完了(同期)</translation>
+        <translation>書き込み完了(同期)</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="158"/>
         <source>File &apos;%1&apos; does not exist</source>
-        <translation type="unfinished">ファイル &apos;%1&apos; がありません。</translation>
+        <translation>ファイル &apos;%1&apos; がありません。</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="181"/>
@@ -542,7 +542,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="220"/>
         <source>%1: Creating filesystem (%2)</source>
-        <translation type="unfinished">%1: ファイルシステムを作成中 (%2)</translation>
+        <translation>%1: ファイルシステムを作成中 (%2)</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="235"/>
@@ -589,13 +589,13 @@ Would you like to make this setting permanent?</source>
         <location filename="multiimagewritethread.cpp" line="345"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>Unmounting FAT partition</oldsource>
-        <translation>FATパーティションをアンマウント中</translation>
+        <translation>FATパーティションのマウントを解除中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="348"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
-        <translation>%1: アンマウント中にエラーが発生しました</translation>
+        <translation>%1: マウントを解除中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="401"/>
@@ -634,12 +634,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="progressslideshowdialog.cpp" line="138"/>
         <source>%1 MB of %2 MB written (%3 MB/sec)</source>
-        <translation type="unfinished">%2 MB 中 %1 MB 書き込み済み (%3 MB/秒)</translation>
+        <translation>%2 MB 中 %1 MB 書き込み済み (%3 MB/秒)</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="143"/>
         <source>%1 MB written (%2 MB/sec)</source>
-        <translation type="unfinished">%1 MB 書き込み済み (%2 MB/秒)</translation>
+        <translation>%1 MB 書き込み済み (%2 MB/秒)</translation>
     </message>
 </context>
 <context>
