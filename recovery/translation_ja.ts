@@ -241,7 +241,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="languagedialog.ui" line="156"/>
         <source>Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>キーボード</translation>
     </message>
 </context>
 <context>
@@ -264,7 +264,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="122"/>
         <source>Install (i)</source>
-        <translation type="unfinished"></translation>
+        <translation>インストール (i)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="125"/>
@@ -284,17 +284,17 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="140"/>
         <source>Exits and boots the installed operating system.</source>
-        <translation type="unfinished"></translation>
+        <translation>終了して、インストールしたオペレーティング システムを起動する</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="155"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">詳細</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="167"/>
         <source>Edit config (e)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">設定の編集 (e)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="170"/>
@@ -304,18 +304,18 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="182"/>
         <source>Online help (h)</source>
-        <translation type="unfinished"></translation>
+        <translation>オンラインヘルプ (h)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="185"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザを開いてRaspberry Pi フォーラムを表示する</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="248"/>
         <location filename="mainwindow.cpp" line="911"/>
         <source>RECOMMENDED</source>
-        <translation type="unfinished"></translation>
+        <translation>推奨</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="403"/>
@@ -404,40 +404,41 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="532"/>
         <source>HDMI safe mode</source>
-        <translation type="unfinished"></translation>
+        <translation>HDMI セーフモード</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="536"/>
         <source>composite PAL mode</source>
-        <translation type="unfinished"></translation>
+        <translation>コンポジット PAL モード</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="540"/>
         <source>composite NTSC mode</source>
-        <translation type="unfinished"></translation>
+        <translation>コンポジット NTSC モード</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="597"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
-        <translation type="unfinished"></translation>
+        <translation>表示モードを %1 に変更しました。
+この設定を保持しますか？</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="862"/>
         <location filename="mainwindow.cpp" line="1173"/>
         <location filename="mainwindow.cpp" line="1183"/>
         <source>Download error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ダウンロードエラー</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="862"/>
         <source>Error downloading distribution list from Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>ディストリビューションのリストをダウンロード中にエラーが発生しました。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="876"/>
         <source>Error parsing list.json downloaded from server</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロード済みのlist.jsonの読み込みに失敗しました。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1064"/>
@@ -462,7 +463,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1298"/>
         <source>Wired network access is required to use NOOBS without local images. Please insert a network cable into the network port.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ローカルイメージ以外でNOOBSを利用するには有線ネットワークが必要です。ネットワークケーブルを接続してください。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="717"/>
@@ -473,7 +474,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="718"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">この機能には有線ネットワークが必要です。ネットワークケーブルを接続してください。</translation>
     </message>
 </context>
 <context>
@@ -481,7 +482,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="44"/>
         <source>partitions.json invalid</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">partitions.json が正しくありません。</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="69"/>
@@ -491,7 +492,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="93"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ディスクスペースが足りません。 %1 MB必要ですが、 %2 MBしかありません。</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="97"/>
@@ -506,7 +507,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="158"/>
         <source>File &apos;%1&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ファイル &apos;%1&apos; がありません。</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="181"/>
@@ -633,12 +634,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="progressslideshowdialog.cpp" line="138"/>
         <source>%1 MB of %2 MB written (%3 MB/sec)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%2 MB 中 %1 MB 書き込み済み (%3 MB/秒)</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="143"/>
         <source>%1 MB written (%2 MB/sec)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 MB 書き込み済み (%2 MB/秒)</translation>
     </message>
 </context>
 <context>
