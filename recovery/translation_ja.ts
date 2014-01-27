@@ -387,7 +387,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="444"/>
         <source>The install process will begin shortly.</source>
-        <translatione>インストールはまもなく開始されます。</translation>
+        <translation>インストールはまもなく開始されます。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="467"/>
