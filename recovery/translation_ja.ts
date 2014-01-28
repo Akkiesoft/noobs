@@ -7,37 +7,37 @@
         <location filename="bootselectiondialog.ui" line="19"/>
         <location filename="bootselectiondialog.cpp" line="248"/>
         <source>Select OS to boot</source>
-        <translation type="unfinished"></translation>
+        <translation>ブートするOSの選択</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="43"/>
         <source>Cannot display boot menu</source>
-        <translation type="unfinished"></translation>
+        <translation>ブートメニューを表示できません</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="43"/>
         <source>Error mounting settings partition</source>
-        <translation type="unfinished"></translation>
+        <translation>設定パーティションをマウント中のエラー</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="189"/>
         <source>HDMI safe mode</source>
-        <translation type="unfinished"></translation>
+        <translation>HDMI セーフモード</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="193"/>
         <source>composite PAL mode</source>
-        <translation type="unfinished"></translation>
+        <translation>コンポジット PALモード</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="197"/>
         <source>composite NTSC mode</source>
-        <translation type="unfinished"></translation>
+        <translation>コンポジット NTSCモード</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="253"/>
         <source>Previously selected OS will boot in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>選択されたOSは %1 秒以内にブートします</translation>
     </message>
 </context>
 <context>
@@ -45,17 +45,17 @@
     <message>
         <location filename="confeditdialog.ui" line="22"/>
         <source>Config editor</source>
-        <translation type="unfinished"></translation>
+        <translation>設定エディター</translation>
     </message>
     <message>
         <location filename="confeditdialog.cpp" line="82"/>
         <source>Error</source>
-        <translation type="unfinished">エラー</translation>
+        <translation>エラー</translation>
     </message>
     <message>
         <location filename="confeditdialog.cpp" line="83"/>
         <source>Error mounting boot partition</source>
-        <translation type="unfinished"></translation>
+        <translation>ブートパーティションのマウントエラー</translation>
     </message>
 </context>
 <context>
@@ -69,12 +69,12 @@
     <message>
         <location filename="initdrivethread.cpp" line="60"/>
         <source>Formatting settings partition</source>
-        <translation type="unfinished"></translation>
+        <translation>設定パーティションをフォーマットしています</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="63"/>
         <source>Error formatting settings partition</source>
-        <translation type="unfinished"></translation>
+        <translation>設定パーティションのマウントエラー</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="133"/>
@@ -143,12 +143,12 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="initdrivethread.cpp" line="206"/>
         <source>Writing new MBR</source>
-        <translation type="unfinished"></translation>
+        <translation>新しいMBRを書き込み中</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="214"/>
         <source>Error creating MBR</source>
-        <translation type="unfinished"></translation>
+        <translation>MBR作成エラー</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="222"/>
@@ -168,12 +168,12 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="initdrivethread.cpp" line="247"/>
         <source>Resizing FAT partition</source>
-        <translation type="unfinished"></translation>
+        <translation>FATパーティションのサイズを変更中</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="266"/>
         <source>Error resizing existing FAT partition</source>
-        <translation type="unfinished"></translation>
+        <translation>FATパーティションのサイズ変更エラー</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="272"/>
@@ -269,12 +269,12 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="125"/>
         <source>Installs the selected operating system image onto this SD card.</source>
-        <translation>選択されたオペレーティングシステムイメージをSDカードにインストールします。</translation>
+        <translation>選択されたオペレーティングシステムのイメージをSDカードにインストールします。</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="128"/>
         <source>I</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">I</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="137"/>
@@ -284,7 +284,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="140"/>
         <source>Exits and boots the installed operating system.</source>
-        <translation>NOOBSを終了して、インストールしたオペレーティング システムを起動する</translation>
+        <translation>NOOBSを終了して、インストールしたオペレーティング システムを起動します。</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="155"/>
@@ -294,12 +294,12 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="167"/>
         <source>Edit config (e)</source>
-        <translation type="unfinished">設定の編集 (e)</translation>
+        <translation>設定の編集 (e)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="170"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">インストール済みOSのconfig.txtとcmdline.txtをテキストエディタで開きます。</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="182"/>
@@ -309,7 +309,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="185"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
-        <translation>ブラウザを開いてRaspberry Pi フォーラムを表示する</translation>
+        <translation>ブラウザを開いてRaspberry Pi フォーラムを表示します</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="248"/>
@@ -335,7 +335,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="146"/>
         <source>Error mounting settings partition</source>
-        <translation type="unfinished"></translation>
+        <translation>設定パーティションのマウントエラー</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="147"/>
@@ -345,18 +345,18 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="154"/>
         <source>Reformat failed</source>
-        <translation type="unfinished"></translation>
+        <translation>再フォーマット失敗</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="154"/>
         <source>SD card might be damaged</source>
-        <translation type="unfinished"></translation>
+        <translation>SDカードが破損したかもしれません</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="404"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will install the selected Operating System. All existing data on the SD card will be overwritten.</oldsource>
-        <translation type="unfinished">本当にイメージを書き込んでもよいですか?この操作で既存のすべてのデータは削除されます!</translation>
+        <translation type="unfinished">本当にイメージを書き込んでも良いですか?この操作で既存のすべてのデータは削除されます!</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="477"/>
@@ -600,33 +600,33 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="401"/>
         <source>Error opening /dev/mmcblk0 for writing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/dev/mmcblk0に書き込むためのオープン時にエラー</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="419"/>
         <source>Internal error in partitioning</source>
-        <translation>パーティション作成中に内部エラーが発生しました</translation>
+        <translation>パーティション作成中の内部エラー</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="502"/>
         <source>Error creating file system</source>
-        <translation>ファイルシステム作成中にエラーが発生しました</translation>
+        <translation>ファイルシステム作成中のエラー</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="544"/>
         <location filename="multiimagewritethread.cpp" line="606"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
-        <translation type="unfinished"></translation>
+        <translation>不明な圧縮ファイルフォーマット形式です。対応する形式は .lzo, .gz, .xz, .bz2, .zip のいずれかです</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="568"/>
         <source>Error downloading or extracting tarball</source>
-        <translation>tarballのダウンロード中もしくは展開中にエラーが発生しました</translation>
+        <translation>tarballのダウンロード中もしくは展開中のエラー</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="627"/>
         <source>Error downloading or writing OS to SD card</source>
-        <translation>SDカードにOSをダウンロード中もしくは書き込み中にエラーが発生しました</translation>
+        <translation>SDカードにOSをダウンロード中もしくは書き込み中のエラー</translation>
     </message>
 </context>
 <context>
