@@ -127,7 +127,7 @@
     <message>
         <location filename="initdrivethread.cpp" line="167"/>
         <source>Copying boot files to storage</source>
-        <translation>ブートファイルをストレージへコピーしています</translation>
+        <translation>ブートファイルをストレージへコピー中</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="192"/>
@@ -178,17 +178,17 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="initdrivethread.cpp" line="272"/>
         <source>Creating extended partition</source>
-        <translation type="unfinished"></translation>
+        <translation>拡張パーティションを作成中</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="311"/>
         <source>Error creating extended partition</source>
-        <translation type="unfinished"></translation>
+        <translation>拡張パーティションを作成中のエラー</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="331"/>
         <source>Error mounting system partition.</source>
-        <translation type="unfinished"></translation>
+        <translation>システムパーティションのマウントエラー</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="67"/>
@@ -284,7 +284,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="140"/>
         <source>Exits and boots the installed operating system.</source>
-        <translation>NOOBSを終了して、インストールしたオペレーティング システムを起動します。</translation>
+        <translation>NOOBSを終了して、インストールしたオペレーティングシステムを起動します。</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="155"/>
@@ -299,7 +299,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="170"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
-        <translation type="unfinished">インストール済みOSのconfig.txtとcmdline.txtをテキストエディタで開きます。</translation>
+        <translation>インストール済みOSのconfig.txtとcmdline.txtをテキストエディタで開きます。</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="182"/>
@@ -469,7 +469,7 @@ Would you like to make this setting permanent?</source>
         <location filename="mainwindow.cpp" line="717"/>
         <location filename="mainwindow.cpp" line="1297"/>
         <source>No network access</source>
-        <translation type="unfinished"></translation>
+        <translation>ネットワークが接続されていません</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="718"/>
