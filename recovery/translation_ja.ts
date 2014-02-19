@@ -84,13 +84,13 @@
     <message>
         <location filename="initdrivethread.cpp" line="136"/>
         <source>Error saving boot files to memory. SD card may be damaged.</source>
-        <translation>SDカードへのブートファイル保存エラー。SDカードは壊れているかもしれません。</translation>
+        <translation>SDカードへのブートファイル保存エラー.SDカードは壊れているかもしれません.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="141"/>
         <location filename="initdrivethread.cpp" line="181"/>
         <source>Error unmounting system partition.</source>
-        <translation>システムパーティションのマウント解除エラー.</translation>
+        <translation>システムパーティションのアンマウントエラー.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="145"/>
@@ -102,7 +102,7 @@
         <location filename="initdrivethread.cpp" line="148"/>
         <location filename="initdrivethread.cpp" line="201"/>
         <source>Error zero&apos;ing MBR/GPT. SD card may be broken or advertising wrong capacity.</source>
-        <translation>MBR/GPTクリア時のエラー。 SDカードは壊れているか、間違った容量を報告しています。</translation>
+        <translation>MBR/GPTクリア時のエラー. SDカードは壊れているか,間違った容量を報告しています.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="152"/>
@@ -112,7 +112,7 @@
     <message>
         <location filename="initdrivethread.cpp" line="156"/>
         <source>Error partitioning</source>
-        <translation>パーティション分割エラー</translation>
+        <translation>パーティション作成エラー</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="160"/>
@@ -138,7 +138,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="initdrivethread.cpp" line="193"/>
         <source>Error: No MBR present on SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>エラー：MBRがSDカードにありません</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="206"/>
@@ -153,7 +153,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="initdrivethread.cpp" line="222"/>
         <source>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>SDカードは,NOOBSインストールのためのフォーマットが終わりました.もう一度NOOBSのファイルをSDカードにコピーして再起動してください.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="227"/>
@@ -213,7 +213,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="initdrivethread.cpp" line="100"/>
         <source>Unmounting boot partition</source>
-        <translation>ブートパーティションをマウント解除しています</translation>
+        <translation>ブートパーティションをアンマウントしています</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="103"/>
@@ -269,7 +269,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="125"/>
         <source>Installs the selected operating system image onto this SD card.</source>
-        <translation>選択されたオペレーティングシステムのイメージをSDカードにインストールします。</translation>
+        <translation>選択されたオペレーティングシステムのイメージをSDカードにインストールします.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="128"/>
@@ -284,7 +284,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="140"/>
         <source>Exits and boots the installed operating system.</source>
-        <translation>NOOBSを終了して、インストールしたオペレーティングシステムを起動します。</translation>
+        <translation>NOOBSを終了して,インストールしたオペレーティングシステムを起動します.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="155"/>
@@ -299,7 +299,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.ui" line="170"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
-        <translation>インストール済みOSのconfig.txtとcmdline.txtをテキストエディタで開きます。</translation>
+        <translation>インストール済みOSのconfig.txtとcmdline.txtをテキストエディタで開きます.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="182"/>
@@ -356,7 +356,7 @@ WARNING: This will erase all data on your SD card</source>
         <location filename="mainwindow.cpp" line="404"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will install the selected Operating System. All existing data on the SD card will be overwritten.</oldsource>
-        <translation type="unfinished">本当にイメージを書き込んでも良いですか?この操作で既存のすべてのデータは削除されます!</translation>
+        <translation>警告：この操作で選択したOSがインストールされます.すでにインストール済みのOSを含め,SDカードの既存のデータは上書きされます.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="477"/>
@@ -387,7 +387,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="444"/>
         <source>The install process will begin shortly.</source>
-        <translation>インストールはまもなく開始されます。</translation>
+        <translation>インストールはすぐに始まります.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="467"/>
@@ -420,7 +420,7 @@ WARNING: This will erase all data on your SD card</source>
         <location filename="mainwindow.cpp" line="597"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
-        <translation>表示モードを %1 に変更しました。
+        <translation>表示モードを %1 に変更しました.
 この設定を保持しますか？</translation>
     </message>
     <message>
@@ -458,12 +458,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1183"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロードしたファイルのSDカード書き込みエラー.SDカードかファイルシステムが壊れているかもしれません.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1298"/>
         <source>Wired network access is required to use NOOBS without local images. Please insert a network cable into the network port.</source>
-        <translation>ローカルイメージ以外でNOOBSを利用するには有線ネットワークが必要です。ネットワークケーブルを接続してください。</translation>
+        <translation>ローカルイメージ以外でNOOBSを利用するには有線ネットワークが必要です.ネットワークケーブルを接続してください.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="717"/>
@@ -474,7 +474,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="718"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
-        <translation>この機能には有線ネットワークが必要です。ネットワークケーブルを接続してください。</translation>
+        <translation>この機能には有線ネットワークが必要です.ネットワークケーブルを接続してください.</translation>
     </message>
 </context>
 <context>
@@ -487,12 +487,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="69"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translation>RIOSOSをインストール出来ません。リカバリーパーティションのサイズが大きすぎます。</translation>
+        <translation>RIOSOSをインストール出来ません.リカバリーパーティションのサイズが大きすぎます.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="93"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
-        <translation>ディスクスペースが足りません。 %1 MB必要ですが、 %2 MBしかありません。</translation>
+        <translation>ディスクスペースが足りません. %1 MB必要ですが, %2 MBしかありません.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="97"/>
@@ -507,7 +507,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="158"/>
         <source>File &apos;%1&apos; does not exist</source>
-        <translation>ファイル &apos;%1&apos; がありません。</translation>
+        <translation>ファイル &apos;%1&apos; がありません.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="181"/>
@@ -589,13 +589,13 @@ Would you like to make this setting permanent?</source>
         <location filename="multiimagewritethread.cpp" line="345"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>Unmounting FAT partition</oldsource>
-        <translation>FATパーティションのマウントを解除中</translation>
+        <translation>FATパーティションをアンマウント中</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="348"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
-        <translation>%1: マウントを解除中にエラーが発生しました</translation>
+        <translation>%1: アンマウント中にエラーが発生しました</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="401"/>
@@ -616,7 +616,7 @@ Would you like to make this setting permanent?</source>
         <location filename="multiimagewritethread.cpp" line="544"/>
         <location filename="multiimagewritethread.cpp" line="606"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
-        <translation>不明な圧縮ファイルフォーマット形式です。対応する形式は .lzo, .gz, .xz, .bz2, .zip のいずれかです</translation>
+        <translation>不明な圧縮ファイルフォーマット形式です.対応する形式は .lzo, .gz, .xz, .bz2, .zip のいずれかです</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="568"/>
