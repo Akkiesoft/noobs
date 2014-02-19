@@ -74,7 +74,7 @@
     <message>
         <location filename="initdrivethread.cpp" line="63"/>
         <source>Error formatting settings partition</source>
-        <translation>設定パーティションのマウントエラー</translation>
+        <translation>設定パーティションのフォーマットエラー</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="133"/>
@@ -84,7 +84,7 @@
     <message>
         <location filename="initdrivethread.cpp" line="136"/>
         <source>Error saving boot files to memory. SD card may be damaged.</source>
-        <translation>SDカードへのブートファイル保存エラー.SDカードは壊れているかもしれません.</translation>
+        <translation>SDカードへのブートファイル保存エラー.SDカードが壊れているかもしれません.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="141"/>
@@ -158,7 +158,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="initdrivethread.cpp" line="227"/>
         <source>SD card has not been formatted correctly. Please reformat using the SD Association Formatting Tool and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>SDカードは正しくフォーマットされていません.SDアソシエーションのフォーマットツールで再フォーマットを試してください.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="233"/>
@@ -350,7 +350,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="154"/>
         <source>SD card might be damaged</source>
-        <translation>SDカードが破損したかもしれません</translation>
+        <translation>SDカードが壊れているかもしれません</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="404"/>
