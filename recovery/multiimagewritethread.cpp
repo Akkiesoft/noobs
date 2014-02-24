@@ -135,6 +135,12 @@ bool MultiImageWriteThread::processImage(const QString &folder, const QString &f
     qDebug() << "Processing OS:" << os_name;
 
     QVariantList partitions = Json::loadFromFile(folder+"/partitions.json").toMap().value("partitions").toList();
+    if (partitions.isEmpty())
+    {
+        emit error(tr("No partitions defined in partitions.json"));
+        return false;
+    }
+
     foreach (QVariant pv, partitions)
     {
         QVariantMap partition = pv.toMap();
@@ -144,6 +150,7 @@ bool MultiImageWriteThread::processImage(const QString &folder, const QString &f
         QByteArray label = partition.value("label").toByteArray();
         QString tarball  = partition.value("tarball").toString();
         bool emptyfs     = partition.value("empty_fs", false).toBool();
+        bool is_fatfs    = (fstype == "fat" || fstype == "FAT");
 
         if (!emptyfs && tarball.isEmpty())
         {
@@ -159,22 +166,55 @@ bool MultiImageWriteThread::processImage(const QString &folder, const QString &f
                 return false;
             }
         }
-        if (label.size() > 15)
-        {
-            label.clear();
+        int max_label_length = 16;
+        // FAT labels are only uppercase and limited to 11 chars
+        if (is_fatfs) {
+            label = label.toUpper();
+            max_label_length = 11;
         }
-        else if (!isLabelAvailable(label))
+        if (label.size() > max_label_length)
         {
-            for (int i=0; i<10; i++)
+            label.resize(max_label_length);
+        }
+        bool found_unique_label = false;
+        if (!isLabelAvailable(label))
+        {
+            // make room for the appended digit if necessary
+            if ((label.size() + 1) > max_label_length)
+            {
+                label.resize(max_label_length - 1);
+            }
+            // start the numbering at 1, because (root, root1, root2) looks better than (root, root0, root1)
+            for (int i=1; i<10; i++)
             {
                 if (isLabelAvailable(label+QByteArray::number(i)))
                 {
-                    label = label+QByteArray::number(i);
+                    label.append(QByteArray::number(i));
+                    found_unique_label = true;
                     break;
                 }
             }
+            // in the unlikely event that a unique label still hasn't been found, append a 2-digit number
+            if (!found_unique_label)
+            {
+                // make room for the appended digits if necessary
+                if ((label.size() + 2) > max_label_length)
+                {
+                    label.resize(max_label_length - 2);
+                }
+                for (int i=10; i<100; i++)
+                {
+                    if (isLabelAvailable(label+QByteArray::number(i)))
+                    {
+                        label.append(QByteArray::number(i));
+                        found_unique_label = true;
+                        break;
+                    }
+                }
+            }
+        } else {
+            found_unique_label = true;
         }
-
         int partsizeMB = partition.value("partition_size_nominal").toInt();
         if (!partsizeMB)
         {
@@ -190,14 +230,14 @@ bool MultiImageWriteThread::processImage(const QString &folder, const QString &f
         int parttype;
         int specialOffset = 0;
 
-        if (fstype == "FAT" || fstype == "fat")
+        if (is_fatfs)
             parttype = 0x0c; /* FAT32 LBA */
         else if (fstype == "swap")
             parttype = 0x82;
         else
             parttype = 0x83; /* Linux native */
 
-        if (folder.contains("risc", Qt::CaseInsensitive) && (fstype == "FAT" || fstype == "fat"))
+        if (folder.contains("risc", Qt::CaseInsensitive) && is_fatfs)
         {
             /* Let Risc OS start at known offset */
             int startSector   = getFileContents("/sys/class/block/mmcblk0p2/start").trimmed().toULongLong();
@@ -248,14 +288,6 @@ bool MultiImageWriteThread::processImage(const QString &folder, const QString &f
         _part++;
     }
 
-    emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
-    if (QProcess::execute("mount /dev/mmcblk0p"+QString::number(firstPartition)+" /mnt2") != 0)
-    {
-        emit error(tr("%1: Error mounting file system").arg(os_name));
-        return false;
-    }
-
-    emit statusUpdate(tr("%1: Creating os_config.json").arg(os_name));
 
     QString description = getDescription(folder, flavour);
     QVariantList vpartitions;
@@ -271,81 +303,96 @@ bool MultiImageWriteThread::processImage(const QString &folder, const QString &f
     QVariantMap vos = Json::loadFromFile(folder+"/os.json").toMap();
     QVariant releasedate = vos.value("release_date");
 
-    QVariantMap qm;
-    qm.insert("flavour", flavour);
-    qm.insert("release_date", releasedate);
-    qm.insert("imagefolder", folder);
-    qm.insert("description", description);
-    qm.insert("videomode", videomode);
-    qm.insert("partitions", vpartitions);
-    qm.insert("language", language);
-    qm.insert("keyboard", keyboard);
+    QByteArray fstypeFirstPartition = partitions.first().toMap().value("filesystem_type").toByteArray();
+    bool firstPartitionIsFat = (fstypeFirstPartition == "FAT" || fstypeFirstPartition == "fat");
 
-    Json::saveToFile("/mnt2/os_config.json", qm);
-
-    emit statusUpdate(tr("%1: Saving display mode to config.txt").arg(os_name));
-    patchConfigTxt();
-
-    /* Partition setup script can either reside in the image folder
-     * or inside the boot partition tarball */
-    QString postInstallScript = folder+"/partition_setup.sh";
-    if (!QFile::exists(postInstallScript))
-        postInstallScript = "/mnt2/partition_setup.sh";
-
-    if (QFile::exists(postInstallScript))
+    if (firstPartitionIsFat)
     {
-        emit statusUpdate(tr("%1: Running partition setup script").arg(os_name));
-        QProcess proc;
-        QProcessEnvironment env;
-        QStringList args(postInstallScript);
-        env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
-
-        /* - Parameters to the partition-setup script are supplied both as
-         *   command line parameters and set as environement variables
-         * - Boot partition is mounted, working directory is set to its mnt folder
-         *
-         *  partition_setup.sh part1=/dev/mmcblk0p3 id1=LABEL=BOOT part2=/dev/mmcblk0p4
-         *  id2=UUID=550e8400-e29b-41d4-a716-446655440000
-         */
-        for (int i=firstPartition, pcount = 1; i<_part; i++, pcount++)
+        emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
+        if (QProcess::execute("mount /dev/mmcblk0p"+QString::number(firstPartition)+" /mnt2") != 0)
         {
-            QString part  = "/dev/mmcblk0p"+QString::number(i);
-            QString nr    = QString::number(pcount);
-            QString uuid  = getUUID(part);
-            QString label = getLabel(part);
-            QString id;
-            if (!label.isEmpty())
-                id = "LABEL="+label;
-            else
-                id = "UUID="+uuid;
-
-            qDebug() << "part" << part << uuid << label;
-
-            args << "part"+nr+"="+part << "id"+nr+"="+id;
-            env.insert("part"+nr, part);
-            env.insert("id"+nr, id);
-        }
-
-        qDebug() << "Executing: sh" << args;
-        qDebug() << "Env:" << env.toStringList();
-        proc.setProcessChannelMode(proc.MergedChannels);
-        proc.setProcessEnvironment(env);
-        proc.setWorkingDirectory("/mnt2");
-        proc.start("/bin/sh", args);
-        proc.waitForFinished(-1);
-        qDebug() << proc.exitStatus();
-
-        if (proc.exitCode() != 0)
-        {
-            emit error(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
+            emit error(tr("%1: Error mounting file system").arg(os_name));
             return false;
         }
-    }
 
-emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
-    if (QProcess::execute("umount /mnt2") != 0)
-    {
-        emit error(tr("%1: Error unmounting").arg(os_name));
+        emit statusUpdate(tr("%1: Creating os_config.json").arg(os_name));
+
+        QVariantMap qm;
+        qm.insert("flavour", flavour);
+        qm.insert("release_date", releasedate);
+        qm.insert("imagefolder", folder);
+        qm.insert("description", description);
+        qm.insert("videomode", videomode);
+        qm.insert("partitions", vpartitions);
+        qm.insert("language", language);
+        qm.insert("keyboard", keyboard);
+
+        Json::saveToFile("/mnt2/os_config.json", qm);
+
+        emit statusUpdate(tr("%1: Saving display mode to config.txt").arg(os_name));
+        patchConfigTxt();
+
+        /* Partition setup script can either reside in the image folder
+         * or inside the boot partition tarball */
+        QString postInstallScript = folder+"/partition_setup.sh";
+        if (!QFile::exists(postInstallScript))
+            postInstallScript = "/mnt2/partition_setup.sh";
+
+        if (QFile::exists(postInstallScript))
+        {
+            emit statusUpdate(tr("%1: Running partition setup script").arg(os_name));
+            QProcess proc;
+            QProcessEnvironment env;
+            QStringList args(postInstallScript);
+            env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
+
+            /* - Parameters to the partition-setup script are supplied both as
+             *   command line parameters and set as environement variables
+             * - Boot partition is mounted, working directory is set to its mnt folder
+             *
+             *  partition_setup.sh part1=/dev/mmcblk0p3 id1=LABEL=BOOT part2=/dev/mmcblk0p4
+             *  id2=UUID=550e8400-e29b-41d4-a716-446655440000
+             */
+            for (int i=firstPartition, pcount = 1; i<_part; i++, pcount++)
+            {
+                QString part  = "/dev/mmcblk0p"+QString::number(i);
+                QString nr    = QString::number(pcount);
+                QString uuid  = getUUID(part);
+                QString label = getLabel(part);
+                QString id;
+                if (!label.isEmpty())
+                    id = "LABEL="+label;
+                else
+                    id = "UUID="+uuid;
+
+                qDebug() << "part" << part << uuid << label;
+
+                args << "part"+nr+"="+part << "id"+nr+"="+id;
+                env.insert("part"+nr, part);
+                env.insert("id"+nr, id);
+            }
+
+            qDebug() << "Executing: sh" << args;
+            qDebug() << "Env:" << env.toStringList();
+            proc.setProcessChannelMode(proc.MergedChannels);
+            proc.setProcessEnvironment(env);
+            proc.setWorkingDirectory("/mnt2");
+            proc.start("/bin/sh", args);
+            proc.waitForFinished(-1);
+            qDebug() << proc.exitStatus();
+
+            if (proc.exitCode() != 0)
+            {
+                emit error(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
+                return false;
+            }
+        }
+
+        emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
+        if (QProcess::execute("umount /mnt2") != 0)
+        {
+            emit error(tr("%1: Error unmounting").arg(os_name));
+        }
     }
 
     /* Save information about installed operating systems in installed_os.json */
@@ -355,6 +402,7 @@ emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
     ventry["folder"]      = folder;
     ventry["release_date"]= releasedate;
     ventry["partitions"]  = vpartitions;
+    ventry["bootable"]    = firstPartitionIsFat;
     QString iconfilename = folder+"/"+flavour+".png";
     iconfilename.replace(" ", "_");
     if (QFile::exists(iconfilename))
