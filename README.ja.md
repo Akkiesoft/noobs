@@ -3,7 +3,7 @@
 
 NOOBS is designed to make it easy to select and install operating systems for the Raspberry Pi without having to worry about manually imaging your SD card.
 
-NOOBSは、SDカードに手動でイメージを書き込むことなく、簡単にオペレーティングシステムを選んでRaspbery Piにインストールできるように設計されました。
+NOOBSは、SDカードに手動でイメージを書き込むことなく、簡単にオペレーティングシステムを選びRaspbery Piにインストールできるように設計されました。
 
 The latest official release of NOOBS can be downloaded from http://downloads.raspberrypi.org/NOOBS_latest
 
@@ -18,9 +18,13 @@ For information on previous releases and version changelists, visit https://gith
 ### 概要
 On first boot NOOBS will format your SD card and allow you to select which OSes you want to install from a list. This OS list is automatically generated from both locally available OSes (i.e. those contained in the `/os` directory on disk) or those available from our remote repository (wired network connection required).
 
+NOOBSが初めて起動すると、SDカードをフォーマットして、インストールしたいOSをリストから選択できるようにします。OSのリストはローカル上で有効なOS（これらはディスク上の/osディレクトリに収録されています）から自動的に生成されます。
+
 Only the latest version of each OS will ever be displayed meaning that you can be sure that you have installed the most up-to-date release of your selected OS.
 
 On any subsequent boot you can then press the SHIFT key to enter the NOOBS interface and easily reinstall your choice of OSes.
+
+その後は起動時にSHIFTキーを押すとNOOBSに入ることができ、OSを選びなおして簡単に再インストールすることが可能です。
 
 The NOOBS interface provides the following functionality:
 - <b>Install</b>: Installs the selected OSes onto your SD card. Changing this selection erases all OSes currently installed.
@@ -32,9 +36,9 @@ The NOOBS interface provides the following functionality:
 - <b>Display Mode Selection</b>: By default, NOOBS will output over HDMI at your display's preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode, HDMI safe mode, composite PAL mode or composite NTSC mode respectively.
 
 NOOBSのインターフェイスは、以下の機能を提供します:
-- <b>インストール</b>: Installs the selected OSes onto your SD card. Changing this selection erases all OSes currently installed.
+- <b>インストール</b>: 選択されたOSをSDカードにインストールします。選択を変更すると、インストール済みのすべてのOSが消去されます。
 - <b>設定の編集</b>: Opens a text editor allowing the cmdline and config for the selected installed OS to be edited.
-- <b>オンラインヘルプ</b>: [Networking Required] Open a browser that displays the Raspberry Pi Forum ( http://www.raspberrypi.org/phpBB3/ ), allowing people to quickly access help and troubleshooting.
+- <b>オンラインヘルプ</b>: Webブラウザーを起動してRaspberry Piのフォーラム ( http://www.raspberrypi.org/phpBB3/ )を表示します。allowing people to quickly access help and troubleshooting.（ネットワーク接続が必要です）。
 - <b>終了</b>: Quits NOOBS and reboots the Pi into the OS boot menu.
 - <b>言語の選択</b>: Allows you to select the language to be displayed.
 - <b>キーボード配列の選択</b>: Allows you to select the keyboard layout to be used.
