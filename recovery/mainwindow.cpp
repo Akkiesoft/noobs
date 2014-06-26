@@ -59,8 +59,8 @@ int MainWindow::_currentMode = 0;
 MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay), _splash(splash),
-    _silent(false), _allowSilent(false), _settings(NULL),
+    _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
+    _silent(false), _allowSilent(false), _splash(splash), _settings(NULL),
     _activatedEth(false), _numInstalledOS(0), _netaccess(NULL), _displayModeBox(NULL)
 {
     ui->setupUi(this);
@@ -314,6 +314,50 @@ void MainWindow::repopulate()
     }
 }
 
+/* Whether this OS should be displayed in the list of installable OSes */
+bool canInstallOs(const QString& name, const QVariantMap& values)
+{
+    /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
+
+    /* If it's not bootable, is isn't really an OS, so is always installable */
+    if (!canBootOs(name, values))
+    {
+        return true;
+    }
+
+    /* RISC_OS needs a matching riscos_offset */
+    if (nameMatchesRiscOS(name))
+    {
+        if (!values.contains(RISCOS_OFFSET_KEY) || (values.value(RISCOS_OFFSET_KEY).toInt() != RISCOS_OFFSET))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/* Whether this OS is supported */
+bool isSupportedOs(const QString& name, const QVariantMap& values)
+{
+    /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
+
+    /* If it's not bootable, is isn't really an OS, so is always supported */
+    if (!canBootOs(name, values))
+    {
+        return true;
+    }
+
+    /* Check the feature_level flag */
+    quint64 featurelevel = values.value("feature_level", 58364).toULongLong();
+    quint64 mask = (quint64)1 << readBoardRevision();
+    if ((featurelevel & mask) != mask) {
+        return false;
+    }
+
+    return true;
+}
+
 QMap<QString, QVariantMap> MainWindow::listImages()
 {
     QMap<QString,QVariantMap> images;
@@ -329,32 +373,38 @@ QMap<QString, QVariantMap> MainWindow::listImages()
             continue;
         QVariantMap osv = Json::loadFromFile(imagefolder+"/os.json").toMap();
 
-        if (QFile::exists(imagefolder+"/flavours.json"))
+        QString basename = osv.value("name").toString();
+        if (canInstallOs(basename, osv))
         {
-            QVariantMap v = Json::loadFromFile(imagefolder+"/flavours.json").toMap();
-            QVariantList fl = v.value("flavours").toList();
-
-            foreach (QVariant f, fl)
+            if (QFile::exists(imagefolder+"/flavours.json"))
             {
-                QVariantMap fm  = f.toMap();
-                if (fm.contains("name"))
+                QVariantMap v = Json::loadFromFile(imagefolder+"/flavours.json").toMap();
+                QVariantList fl = v.value("flavours").toList();
+
+                foreach (QVariant f, fl)
                 {
-                    QString name = fm.value("name").toString();
-                    if (name == RECOMMENDED_IMAGE)
-                        fm["recommended"] = true;
-                    fm["folder"] = imagefolder;
-                    fm["release_date"] = osv.value("release_date");
-                    images[imagefolder+"#"+name] = fm;
+                    QVariantMap fm  = f.toMap();
+                    if (fm.contains("name"))
+                    {
+                        QString name = fm.value("name").toString();
+                        if (name == RECOMMENDED_IMAGE)
+                            fm["recommended"] = true;
+                        fm["folder"] = imagefolder;
+                        fm["release_date"] = osv.value("release_date");
+                        QString imagekey = imagefolder+"#"+name;
+                        images[imagekey] = fm;
+                    }
                 }
             }
-        }
-        else
-        {
-            QString name = osv.value("name").toString();
-            if (name.contains(RECOMMENDED_IMAGE))
-                osv["recommended"] = true;
-            osv["folder"] = imagefolder;
-            images[imagefolder+"#"+name] = osv;
+            else
+            {
+                QString name = basename;
+                if (name.contains(RECOMMENDED_IMAGE))
+                    osv["recommended"] = true;
+                osv["folder"] = imagefolder;
+                QString imagekey = imagefolder+"#"+name;
+                images[imagekey] = osv;
+            }
         }
     }
 
@@ -365,10 +415,18 @@ QMap<QString, QVariantMap> MainWindow::listImages()
         foreach (QVariant v, i)
         {
             QVariantMap m = v.toMap();
-            m["installed"] = true;
             QString flavour = m.value("name").toString();
             QString imagefolder = m.value("folder").toString();
-            images[imagefolder+"#"+flavour] = m;
+            QString imageKey = imagefolder+"#"+flavour;
+            if (images.contains(imageKey))
+            {
+                images[imageKey]["installed"] = true;
+            }
+            else
+            {
+                m["installed"] = true;
+                images[imageKey] = m;
+            }
         }
     }
 
@@ -404,46 +462,65 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                                         tr("Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed."),
                                         QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
     {
-        setEnabled(false);
-        _numMetaFilesToDownload = 0;
-
+        /* See if any of the OSes are unsupported */
+        bool allSupported = true;
+        QString unsupportedOses;
         QList<QListWidgetItem *> selected = selectedItems();
         foreach (QListWidgetItem *item, selected)
         {
             QVariantMap entry = item->data(Qt::UserRole).toMap();
-
-            if (!entry.contains("folder"))
-            {
-                QDir d;
-                QString folder = "/settings/os/"+entry.value("name").toString();
-                folder.replace(' ', '_');
-                if (!d.exists(folder))
-                    d.mkpath(folder);
-
-                downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
-                downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
-
-                if (entry.contains("marketing_info"))
-                    downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
-
-                if (entry.contains("partition_setup"))
-                    downloadMetaFile(entry.value("partition_setup").toString(), folder+"/partition_setup.sh");
-
-                if (entry.contains("icon"))
-                    downloadMetaFile(entry.value("icon").toString(), folder+"/icon.png");
+            QString name = entry.value("name").toString();
+            if (!isSupportedOs(name, entry)) {
+                allSupported = false;
+                unsupportedOses += "\n" + name;
             }
         }
+        if (_silent || allSupported || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: incompatible Operating System(s) detected. The following OSes aren't supported on this revision of Raspberry Pi and may fail to boot or function correctly:") + unsupportedOses,
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+        {
+            setEnabled(false);
+            _numMetaFilesToDownload = 0;
 
-        if (_numMetaFilesToDownload == 0)
-        {
-            /* All OSes selected are local */
-            startImageWrite();
-        }
-        else if (!_silent)
-        {
-            _qpd = new QProgressDialog(tr("The install process will begin shortly."), QString(), 0, 0, this);
-            _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-            _qpd->show();
+            QList<QListWidgetItem *> selected = selectedItems();
+            foreach (QListWidgetItem *item, selected)
+            {
+                QVariantMap entry = item->data(Qt::UserRole).toMap();
+
+                if (!entry.contains("folder"))
+                {
+                    QDir d;
+                    QString folder = "/settings/os/"+entry.value("name").toString();
+                    folder.replace(' ', '_');
+                    if (!d.exists(folder))
+                        d.mkpath(folder);
+
+                    downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
+                    downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
+
+                    if (entry.contains("marketing_info"))
+                        downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
+
+                    if (entry.contains("partition_setup"))
+                        downloadMetaFile(entry.value("partition_setup").toString(), folder+"/partition_setup.sh");
+
+                    if (entry.contains("icon"))
+                        downloadMetaFile(entry.value("icon").toString(), folder+"/icon.png");
+                }
+            }
+
+            if (_numMetaFilesToDownload == 0)
+            {
+                /* All OSes selected are local */
+                startImageWrite();
+            }
+            else if (!_silent)
+            {
+                _qpd = new QProgressDialog(tr("The install process will begin shortly."), QString(), 0, 0, this);
+                _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+                _qpd->show();
+            }
         }
     }
 }
@@ -885,59 +962,62 @@ void MainWindow::processJson(QVariant json)
     {
         QVariantMap  os = osv.toMap();
 
-        if (os.contains("flavours"))
+        QString basename = os.value("os_name").toString();
+        if (canInstallOs(basename, os))
         {
-            QVariantList flavours = os.value("flavours").toList();
-
-            foreach (QVariant flv, flavours)
+            if (os.contains("flavours"))
             {
-                QVariantMap flavour = flv.toMap();
-                QVariantMap item = os;
-                QString name        = flavour.value("name").toString();
-                QString description = flavour.value("description").toString();
-                QString iconurl     = flavour.value("icon").toString();
+                QVariantList flavours = os.value("flavours").toList();
 
-                item.insert("name", name);
-                item.insert("description", description);
-                item.insert("icon", iconurl);
-
-                if (!alreadyHasItem(name, item.value("release_date")))
+                foreach (QVariant flv, flavours)
                 {
+                    QVariantMap flavour = flv.toMap();
+                    QVariantMap item = os;
+                    QString name        = flavour.value("name").toString();
+                    QString description = flavour.value("description").toString();
+                    QString iconurl     = flavour.value("icon").toString();
+
+                    item.insert("name", name);
+                    item.insert("description", description);
+                    item.insert("icon", iconurl);
+
+                    if (!alreadyHasItem(name, item.value("release_date")))
+                    {
+                        if (!iconurl.isEmpty())
+                            iconurls.insert(iconurl);
+
+                        bool recommended = (name == RECOMMENDED_IMAGE);
+                        if (recommended)
+                            name += " ["+tr("RECOMMENDED")+"]";
+
+                        QListWidgetItem *witem = new QListWidgetItem(name+"\n"+description);
+                        witem->setCheckState(Qt::Unchecked);
+                        witem->setData(Qt::UserRole, item);
+                        witem->setData(SecondIconRole, internetIcon);
+
+                        if (recommended)
+                            ui->list->insertItem(0, witem);
+                        else
+                            ui->list->addItem(witem);
+                    }
+                }
+            }
+            if (os.contains("description"))
+            {
+                QString name = basename;
+                QString description = os.value("description").toString();
+                if (!alreadyHasItem(name, os.value("release_date")))
+                {
+                    os["name"] = name;
+                    QString iconurl = os.value("icon").toString();
                     if (!iconurl.isEmpty())
                         iconurls.insert(iconurl);
 
-                    bool recommended = (name == RECOMMENDED_IMAGE);
-                    if (recommended)
-                        name += " ["+tr("RECOMMENDED")+"]";
-
-                    QListWidgetItem *witem = new QListWidgetItem(name+"\n"+description);
+                    QListWidgetItem *witem = new QListWidgetItem(name+"\n"+description, ui->list);
                     witem->setCheckState(Qt::Unchecked);
-                    witem->setData(Qt::UserRole, item);
+                    witem->setData(Qt::UserRole, os);
                     witem->setData(SecondIconRole, internetIcon);
-
-                    if (recommended)
-                        ui->list->insertItem(0, witem);
-                    else
-                        ui->list->addItem(witem);
                 }
-            }
-        }
-        if (os.contains("description"))
-        {
-            QString name = os.value("os_name").toString();
-            QString description = os.value("description").toString();
-
-            if (!alreadyHasItem(name, os.value("release_date")))
-            {
-                os["name"] = name;
-                QString iconurl = os.value("icon").toString();
-                if (!iconurl.isEmpty())
-                    iconurls.insert(iconurl);
-
-                QListWidgetItem *witem = new QListWidgetItem(name+"\n"+description, ui->list);
-                witem->setCheckState(Qt::Unchecked);
-                witem->setData(Qt::UserRole, os);
-                witem->setData(SecondIconRole, internetIcon);
             }
         }
     }
@@ -1053,7 +1133,7 @@ void MainWindow::updateNeeded()
         QVariantMap entry = item->data(Qt::UserRole).toMap();
         _neededMB += entry.value("nominal_size").toInt();
 
-        if (entry.value("name").toString().contains("risc", Qt::CaseInsensitive))
+        if (nameMatchesRiscOS(entry.value("name").toString()))
         {
             /* RiscOS needs to start at a predetermined sector, calculate the extra space needed for that */
             int startSector = getFileContents("/sys/class/block/mmcblk0p2/start").trimmed().toULongLong();
